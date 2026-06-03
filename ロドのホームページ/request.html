@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>有償依頼について</title>
+
+<style>
+body {
+  background: linear-gradient(45deg, #e6a9c0, #dcdcdc, #a8b8d8);
+  background-size: 200% 200%;
+  animation: bgMove 3s infinite alternate;
+
+  font-family: "Comic Sans MS", cursive;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  color: #333;
+}
+
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+h1 {
+  margin-top: 30px;
+  color: white;
+  text-shadow: 0 0 10px hotpink;
+}
+
+/* セクションカード */
+.card {
+  background: white;
+  margin: 20px auto;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px pink;
+  text-align: left;
+}
+
+/* 見出し */
+h2 {
+  color: hotpink;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* ボタン */
+.button {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 12px 20px;
+
+  background: black;
+  color: white;
+  border-radius: 15px;
+  text-decoration: none;
+
+  transition: 0.3s;
+}
+
+.button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px hotpink;
+}
+
+/* 画像ギャラリー */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+#rodoCursor {
+  position: fixed;
+  width: 60px;
+  pointer-events: none;
+  z-index: 9999;
+}
+.gallery img {
+  width: 100%;
+  border-radius: 10px;
+  transition: 0.3s;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* 戻る */
+.back {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+
+  width: 180px;
+  height: 45px;
+  line-height: 45px;
+
+  font-size: 14px;
+
+  background: white;
+  border-radius: 15px;
+
+  box-shadow: 0 0 10px pink;
+  text-decoration: none;
+  color: black;
+  z-index: 999;
+}
+
+.back:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px hotpink;
+}
+
+/* 小さい補足 */
+.note {
+  font-size: 12px;
+  opacity: 0.7;
+}
+</style>
+</head>
+
+<body>
+<audio id="bgm" src="chiisanaomochabako.mp3"></audio>
+<audio id="clickSE" src="cat.mp3" preload="auto"></audio>
+
+<h1>有償依頼について</h1>
+
+<div class="card">
+<h2>■ 依頼受付について</h2>
+<p>
+有償依頼を受け付けています💪<br>
+イラスト制作・キャラクターデザインなど対応可能です。
+</p>
+<p class="note">
+※内容によってはお受けできない場合があります！
+</p>
+</div>
+
+<div class="card">
+<h2>■ 依頼方法</h2>
+<p>
+詳細はこちらをご確認ください👇
+</p>
+
+<a class="button"
+href="https://x.com/yoshitatsu_iei/status/1992859471887179898?s=61"
+target="_blank">
+Xで詳細を見る
+</a>
+</div>
+
+<div class="card">
+<h2>■ イラストサンプル</h2>
+<div class="gallery">
+  <img src="e1.jpg">
+  <img src="e6.jpg">
+  <img src="e3.jpg">
+  <img src="e4.jpg">
+  <img src="e8.jpg">
+  <img src="e2.jpg">
+  <img src="e7.jpg">
+  <img src="e5.jpg">
+  <img src="e9.jpg">
+  <img src="e10.jpg">
+  <img src="e11.jpg">
+</div>
+</div>
+
+<a href="index.html" class="back">← トップへ戻る</a>
+<img id="rodoCursor" src="neko.jpg">
+<audio id="bgm" src="chiisanaomochabako.mp3" loop></audio>
+<audio id="clickSE" src="cat.mp3"></audio>
+
+<script src="common.js"></script>
+</body>
+</html>

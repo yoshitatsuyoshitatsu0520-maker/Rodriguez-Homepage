@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>SNSリンクまとめ</title>
+
+<style>
+body {
+  background: linear-gradient(45deg, #e6a9c0, #dcdcdc, #a8b8d8);
+  background-size: 200% 200%;
+  animation: fadeIn 1s forwards, bgMove 3s infinite alternate;
+
+  font-family: "Comic Sans MS", cursive;
+  text-align: center;
+  margin: 0;
+}
+
+/* フェードイン */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* 背景 */
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* タイトル */
+h1 {
+  color: white;
+  text-shadow: 0 0 10px hotpink;
+  margin-top: 20px;
+}
+
+/* SNSボタン */
+.sns-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.sns-button {
+  width: 300px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+
+  color: white;
+  transition: 0.3s;
+}
+
+.x { background: black; }
+.pixiv { background: #0096fa; }
+.youtube { background: red; }
+.marshmallow { background: #ff4fa3; }
+
+.sns-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px white;
+}
+
+/* 戻るボタン */
+.back {
+  margin-top: 40px;
+  display: inline-block;
+  padding: 10px 20px;
+  background: white;
+  border-radius: 15px;
+  text-decoration: none;
+  color: black;
+}
+
+/* フェード（修正） */
+.fadeOut {
+  opacity: 0;
+  transition: 0.5s;
+}
+
+/* カーソル */
+#rodoCursor {
+  position: fixed;
+  width: 60px;
+  pointer-events: none;
+  z-index: 9999;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgm" src="chiisanaomochabako.mp3" loop></audio>
+<audio id="clickSE" src="cat.mp3" preload="auto"></audio>
+
+<h1>SNSリンクまとめ</h1>
+
+<div class="sns-container">
+  <a href="https://x.com/yoshitatsu_iei?s=21" target="_blank" rel="noopener noreferrer" class="sns-button x">X</a>
+  <a href="https://www.pixiv.net/users/106810481" target="_blank" rel="noopener noreferrer" class="sns-button pixiv">pixiv</a>
+  <a href="https://youtube.com/channel/UCEHN7JH9hqVJR8C-cVrXmFA?si=ucgozxAWTjYyZyhx" target="_blank" rel="noopener noreferrer" class="sns-button youtube">YouTube</a>
+  <a href="https://marshmallow-qa.com/l5wriyi43bco33e?t=159sbL&utm_medium=url_text&utm_source=promotion" target="_blank" rel="noopener noreferrer" class="sns-button marshmallow">マシュマロ</a>
+</div>
+
+<a href="index.html" class="back">← 戻る</a>
+
+<img id="rodoCursor" src="neko.jpg">
+<script src="common.js"></script>
+
+</body>
+</html>

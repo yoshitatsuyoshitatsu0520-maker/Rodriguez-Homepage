@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>なにこれ</title>
+
+<style>
+body {
+  background: black;
+  color: white;
+  text-align: center;
+  overflow: hidden;
+}
+
+#neko {
+  position: absolute;
+  width: 120px;
+  cursor: pointer;
+}
+
+#score {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  font-size: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔊 音（ファイル名は英語にする！） -->
+
+<audio id="partyBGM" src="summer.mp3" loop preload="auto"></audio>
+
+<p id="score">0</p>
+<img src="neko.jpg" id="neko">
+
+<script>
+let score = 0;
+const neko = document.getElementById("neko");
+const scoreText = document.getElementById("score");
+
+// 初期位置
+moveNeko();
+
+neko.addEventListener("click", () => {
+  score++;
+  scoreText.innerText = score;
+
+  moveNeko();
+
+  if (score === 10) {
+    triggerEvent();
+  }
+});
+
+function moveNeko() {
+  neko.style.top = Math.random() * 80 + "%";
+  neko.style.left = Math.random() * 80 + "%";
+}
+
+// 🎉 クリアイベント
+function triggerEvent() {
+
+
+  // 🎶 BGM（フェードイン）
+  const bgm = document.getElementById("partyBGM");
+
+  if (bgm) {
+    bgm.volume = 0.3;   // ←最初から音出す
+    bgm.currentTime = 0;
+    bgm.play().catch(e => {
+      console.log("再生エラー", e);
+    });
+  }
+
+  // ⚡ フラッシュ
+  document.body.style.background = "white";
+  setTimeout(() => {
+    document.body.style.background = "yellow";
+  }, 100);
+
+  // 🎊 メイン表示
+  setTimeout(() => {
+    document.body.innerHTML = `
+    <audio id="partyBGM" src="summer.mp3" loop></audio>
+      <h1 style="font-size:60px;">🎉🎉🎉クリアにゃーーー！！！🎉🎉🎉</h1>
+      <p style="font-size:25px;">やるやんｗｗｗｗｗ</p>
+    `;
+  }, 300);
+
+  // 🎊 紙吹雪（画像）
+  setInterval(() => {
+    const img = document.createElement("img");
+    img.src = "toro.jpg";
+
+    img.style.position = "absolute";
+    img.style.left = Math.random() * 100 + "%";
+    img.style.top = "-10%";
+    img.style.width = "60px";
+    img.style.animation = "fall 3s linear";
+
+    document.body.appendChild(img);
+
+    setTimeout(() => img.remove(), 3000);
+  }, 150);
+
+  // 🎊 CSS追加
+  const style = document.createElement("style");
+  style.innerHTML = `
+    @keyframes fall {
+      to { transform: translateY(120vh); }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // 🐱 猫ばらまき
+  setTimeout(() => {
+    for (let i = 0; i < 20; i++) {
+      const img = document.createElement("img");
+      img.src = "neko.jpg";
+      img.style.position = "absolute";
+      img.style.width = "80px";
+      img.style.top = Math.random()*100 + "%";
+      img.style.left = Math.random()*100 + "%";
+      document.body.appendChild(img);
+    }
+  }, 1000);
+
+  // 😂 祝いすぎテキスト
+  setTimeout(() => {
+    document.body.innerHTML += `<h2>祝え祝えーー！！！！！！</h2>`;
+  }, 2000);
+
+  // 🎉 最終画面
+  setTimeout(() => {
+    document.body.innerHTML = `
+      <h1 style="font-size:50px;">🎉🎉🎉おめでとう🎉🎉🎉 ちなみに合言葉は「rodo」</h1>
+      <p>やりますねぇ！</p>
+      <button onclick="location.href='index.html'" style="
+        padding:15px 30px;
+        font-size:18px;
+        border:none;
+        border-radius:10px;
+        cursor:pointer;
+      ">
+        戻る
+      </button>
+    `;
+  }, 6000);
+}
+
+// 😈 押すなボタン
+setTimeout(() => {
+  const btn = document.createElement("button");
+  btn.innerText = "押すな";
+
+  btn.style.position = "fixed";
+  btn.style.bottom = "20px";
+  btn.style.right = "20px";
+  btn.style.padding = "15px 25px";
+  btn.style.fontSize = "18px";
+  btn.style.background = "red";
+  btn.style.color = "white";
+  btn.style.border = "none";
+  btn.style.cursor = "pointer";
+
+  document.body.appendChild(btn);
+
+  btn.addEventListener("click", pressYamero);
+
+}, 3000);
+
+// 💀 ゲームオーバー
+function pressYamero() {
+
+  const messages = [
+    "押すなって言ったよね？😅",
+    "はい、負け～ｗｗｗｗｗｗｗｗ",
+    "好奇心って、怖いよね",
+  ];
+
+  const msg = messages[Math.floor(Math.random() * messages.length)];
+
+  document.body.style.background = "white";
+  setTimeout(() => {
+    document.body.style.background = "black";
+  }, 100);
+
+  document.body.innerHTML = `
+    <h1 style="color:red; font-size:50px;">ゲームオーバー！</h1>
+    <p style="font-size:20px;">${msg}</p>
+    
+    <button onclick="location.reload()" style="
+      margin-top:20px;
+      padding:15px 30px;
+      font-size:18px;
+      background:white;
+      border:none;
+      border-radius:10px;
+      cursor:pointer;
+    ">
+      リトライ
+    </button>
+  `;
+}
+</script>
+
+</body>
+</html>

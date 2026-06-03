@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>自作ゲーム一覧</title>
+
+<style>
+body {
+  background: linear-gradient(45deg, #e6a9c0, #dcdcdc, #a8b8d8);
+  background-size: 200% 200%;
+  animation: bgMove 3s infinite alternate;
+
+  font-family: "Comic Sans MS", cursive;
+  text-align: center;
+
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* 背景アニメ */
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* タイトル */
+h1 {
+  color: white;
+  text-shadow: 0 0 10px hotpink;
+}
+
+/* ボタン */
+.button {
+  display: block;
+  margin: 15px auto;
+  width: 320px;
+  height: 60px;
+  line-height: 60px;
+
+  background: white;
+  color: black;
+  border-radius: 20px;
+  text-decoration: none;
+  box-shadow: 0 0 10px pink;
+  transition: 0.3s;
+}
+
+.button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px hotpink;
+}
+
+/* ゲームカード（そのままでOK） */
+.game-card {
+  display: block;
+  margin: 20px auto;
+  width: 280px;
+
+  background: white;
+  border-radius: 20px;
+  padding: 15px;
+
+  text-decoration: none;
+  color: black;
+
+  box-shadow: 0 0 10px pink;
+  transition: 0.3s;
+  position: relative;
+}
+
+.game-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px hotpink;
+}
+
+.game-content img {
+  width: 260px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-top: 10px;
+}
+
+.desc {
+  position: absolute;
+  top: 50%;
+  left: -260px;
+  transform: translateY(-50%);
+
+  width: 200px;
+  height: 120px;
+
+  background: rgba(255,192,203,0.95);
+  color: black;
+  font-size: 12px;
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  opacity: 0;
+  transition: 0.3s;
+}
+.desc::after {
+  content: "";
+  position: absolute;
+
+  right: -10px;   /* ←少し内側にする */
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 0;
+  height: 0;
+
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 10px solid rgba(255,192,203,0.95);
+
+  z-index: 10;
+}
+
+.game-card:hover .desc {
+  opacity: 1;
+  left: -240px;
+}
+
+/* フェード */
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+/* トップ戻る */
+.back {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+
+  width: 180px;
+  height: 45px;
+  line-height: 45px;
+
+  font-size: 14px;
+
+  background: white;
+  border-radius: 15px;
+
+  box-shadow: 0 0 10px pink;
+  z-index: 999;
+}
+
+.back:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px hotpink;
+}
+#rodoCursor {
+  position: fixed;
+  width: 60px;
+  pointer-events: none;
+  z-index: 9999;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎮 自作ゲーム一覧 🎮</h1>
+
+  <a href="http://novelgame.jp/games/show/12152" target="_blank" class="game-card">
+  <div class="game-content">
+    <div class="game-title">ピュアクル☆ハプニング☆ガールズ</div>
+  <img src="game1.png">
+  </div>
+   <div class="desc">ロドのデビュー作♪
+    学園１優等生の美少女が数学のノートを無くす！！そしてカオスすぎる展開！！</div>
+</a>
+
+<a href="https://yoshitatsuyoshitatsu0520-maker.github.io/tinko/" target="_blank" class="game-card">
+  <div class="game-content">
+    <div class="game-title">10回ボタン押して</div>
+  <img src="game2.png">
+  </div>
+   <div class="desc">10回ボタンを押すと…？（※未完成です）</div>
+</a>
+
+<a href="http://novelgame.jp/games/show/13631" target="_blank" class="game-card">
+  <div class="game-content">
+    <div class="game-title">何度目の自殺未遂</div>
+  <img src="game3.png">
+  </div>
+   <div class="desc">11歳の妹を亡くした小学6年生の少女「愛梨」。彼女は学校で過酷ないじめを受けながら、自責の念に苛まれる日々を過ごしている。そんな彼女が密かに計画していることは＿＿＿
+</div>
+</a>
+
+<a href="index.html" class="button back">← トップへ戻る</a>
+
+<audio id="bgm" src="chiisanaomochabako.mp3" loop></audio>
+<audio id="clickSE" src="cat.mp3" preload="auto"></audio>
+<img id="rodoCursor" src="neko.jpg">
+<script src="common.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>オリジナルキャラクター紹介</title>
+
+<style>
+/* ===== 全体 ===== */
+body {
+  background: linear-gradient(45deg, #e6a9c0, #dcdcdc, #a8b8d8);
+  background-size: 200% 200%;
+  animation: bgMove 3s ease-in-out infinite alternate;
+
+  font-family: "Comic Sans MS", cursive;
+  margin: 0;
+  text-align: center;
+  min-height: 100vh;
+}
+
+/* 背景アニメ */
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* ===== タイトル ===== */
+h1 {
+  color: white;
+  text-shadow: 0 0 10px hotpink;
+  margin-top: 30px;
+}
+
+/* ===== 戻るボタン ===== */
+.back {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+
+  width: 180px;
+  height: 45px;
+  line-height: 45px;
+
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 0 10px pink;
+
+  text-decoration: none;
+  color: black;
+  transition: 0.3s;
+  z-index: 999;
+}
+
+.back:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px hotpink;
+}
+
+/* ===== レイアウト ===== */
+.grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* ===== カード ===== */
+.character-page {
+  width: 90%;
+  max-width: 900px;
+  height: 500px;
+
+  display: flex;
+  align-items: stretch;
+
+  background: white;
+  border-radius: 25px;
+  box-shadow: 0 0 15px pink;
+
+  overflow: hidden;
+  position: relative;
+
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 0.6s;
+}
+
+.character-page.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.character-page:hover {
+  box-shadow: 0 0 25px hotpink;
+}
+
+/* ===== 画像 ===== */
+.character-page img {
+  width: 40%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+/* ===== 情報 ===== */
+.info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+
+/* ===== 名前（グラデ） ===== */
+.name {
+  font-size: 60px;
+  font-weight: bold;
+  margin: 0;
+
+  background: linear-gradient(45deg, #ff69b4, #6ecbff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ===== 説明 ===== */
+.desc {
+    flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* ←中央じゃなく左寄せにする */
+
+  text-align: left; /* ←これも重要 */
+  font-size: 16px;
+  line-height: 1.8;
+
+  max-width: 75%; /* ←これでセリフと被らなくなる */
+}
+
+/* ===== ルビ ===== */
+ruby {
+  ruby-position: over;
+}
+
+rt {
+  font-size: 12px;
+  color: #666;
+  letter-spacing: -1px;
+}
+
+/* ===== セリフ（縦書き・中央・フェード） ===== */
+.serif {
+  position: absolute;
+  right: 30px;
+  top: 50%;
+
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+
+  font-size: 25px;
+  font-weight: bold;
+  color: #555;
+  line-height: 1.4;
+
+  transform: translateY(-50%);
+  
+  opacity: 0;
+  transition: 0.8s;
+
+  white-space: nowrap;
+  max-height: 80%;
+  overflow: hidden;
+}
+
+.serif.show {
+  opacity: 1;
+  transform: translateY(-50%);
+}
+
+/* ===== カーソル ===== */
+#rodoCursor {
+  position: fixed;
+  width: 60px;
+  pointer-events: none;
+  z-index: 9999;
+}
+.button {
+  display: block;
+  margin: 30px auto;
+  width: 320px;
+  height: 60px;
+  line-height: 60px;
+
+  background: white;
+  color: black;
+  border-radius: 20px;
+  text-decoration: none;
+
+  box-shadow: 0 0 10px pink;
+  transition: 0.3s;
+}
+
+.button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px hotpink;
+}
+</style>
+</head>
+
+<body>
+
+<a href="index.html" class="back">← トップへ戻る</a>
+<h1>オリジナルキャラクター紹介</h1>
+
+<div class="grid">
+
+  <div class="character-page">
+    <img src="roroa.jpg">
+    <div class="info">
+      <div class="name">
+        <ruby>創造神ロロア<rt>Souzoushin Roloa</rt></ruby>
+      </div>
+      <div class="desc">ハイテンションなぶっ飛び創造神！<br>
+      代理キャラのつもりだったが、<br>もはや代理らしい扱いはしておらず<br>
+      どちらかというと看板キャラになっている。<br>
+      よく愛梨に付きまとったり、<br>建物を破壊したりしている。<br><br>年齢：（人間でいう）１６歳<br>性別：無し<br>血液型：無し</div>
+    </div>
+    <div class="serif">「ボクと遊ぼうにゃん♪」</div>
+  </div>
+
+  <div class="character-page">
+    <img src="kitti.jpg">
+    <div class="info">
+      <div class="name">
+        <ruby>モブ山鬼畜丸<rt>Mobuyama Kitikumaru</rt></ruby>
+      </div>
+      <div class="desc">謎多き頼れるおっさん。<br>変態な一面もあるが、人助けをしたりお金持ちだったり<br>
+      いろいろとめっちゃすごい。海外出張に行っていることが多い。<br>普通に成人しているのに、<br>
+      なぜか愛梨たちの同級生として扱われている。<br><br>年齢：４５歳<br>性別：男の子<br>血液型：O</div>
+    </div>
+    <div class="serif">「デュフフフフフフ<br>フフフフフフ！」</div>
+  </div>
+
+  <div class="character-page">
+    <img src="airi.jpg">
+    <div class="info">
+      <div class="name">
+        <ruby>伊藤愛梨<rt>Ito Airi</rt></ruby>
+      </div>
+      <div class="desc">ネットと巨乳が大好き。<br>陰キャ四天王のリーダー。<br>コミュ障陰キャの極みで愛嬌が無くガサツ。<br>
+      しかし壮絶な過去を持っていて、<br>人の痛みにすぐ気付き放っておけない。<br>琥珀と付き合っている。
+      <br><br>年齢：１２歳<br>性別：女の子<br>血液型：B</div>
+    </div>
+    <div class="serif">「え、快楽堕ち？」</div>
+  </div>
+  
+  <div class="character-page">
+    <img src="usagi.jpg">
+
+    <div class="info">
+      <div class="name">
+        <ruby>
+          うさぎ太郎
+          <rt>Usagitaro</rt>
+        </ruby>
+      </div>
+
+      <div class="desc">人懐っこくて楽観的、そして元気いっぱい！<br>しかし心を開いていない相手には人見知りをする。
+        <br>意外にもネットが好きで、<br>愛梨に負けないくらいにオタク。
+        <br>そして腐男子。神楽ユキという男性アイドルを激推ししている。
+        <br><br>年齢：１２歳<br>性別：男の子<br>血液型：A</div>
+    </div>
+
+    <div class="serif">「今回こそ．．．今回こそは、<br>停車する時の揺れに
+      <br>耐えてみせる！」</div>
+  </div>
+
+  <div class="character-page">
+    <img src="seseri.jpg">
+
+    <div class="info">
+      <div class="name">
+        <ruby>
+          詩乃葉　瀬々莉
+          <rt>Kotonoha Seseri</rt>
+        </ruby>
+      </div>
+
+      <div class="desc">怖がりで気が弱く、すぐに緊張したり、泣いてしまったりする。<br>真面目でお人よし。<br>オッドアイなのがきっかけで、過去にいじめを受けていた。<br>うさぎ太郎と付き合っていて、2人でお出かけしたりおしゃべりしたりするのが好き。<br>
+      <br>年齢：１２歳<br>性別：男の子<br>血液型：AB</div>
+    </div>
+
+    <div class="serif">「くすぐったいですよ、<br>うさぎ太郎さん」</div>
+  </div>
+
+  <div class="character-page">
+    <img src="kohaku.jpg">
+
+    <div class="info">
+      <div class="name">
+        <ruby>
+          雨瀬　琥珀
+          <rt>Amase Kohaku</rt>
+        </ruby>
+      </div>
+
+      <div class="desc">穏やかで優しい性格だが、<br>かなりやばいヤンデレ。<br>
+      とあることがきっかけで愛梨を誰よりも愛しており、毎日日記をつけている。<br>おしゃれで綺麗な家に住んでおり、黒猫を飼っている。<br>
+      学校で一番の美少女。<br><br>年齢：１２歳<br>性別：女の子<br>血液型：O</div>
+    </div>
+
+    <div class="serif">「愛梨ちゃんを貶す人は<br>．．．嫌い」</div>
+  </div>
+
+  <div class="character-page">
+    <img src="sayo.jpg">
+
+    <div class="info">
+      <div class="name">
+        <ruby>
+          黒川　紗世
+          <rt>Kurokawa Sayo</rt>
+        </ruby>
+      </div>
+
+      <div class="desc">学園一の優等生。<br>いつも燈子やるももに振り回されているツッコミ役。<br>
+        実は裏でめちゃくちゃ恥ずかしいポエムをよく書いている。<br><br>年齢：１６歳<br>性別：女の子<br>血液型：A</div>
+    </div>
+
+    <div class="serif">「別に面白さ求めて<br>ないから！」</div>
+  </div>
+
+  <div class="character-page">
+    <img src="touko.jpg">
+
+    <div class="info">
+      <div class="name">
+        <ruby>
+          桐島　燈子
+          <rt>Kirishima Toko</rt>
+        </ruby>
+      </div>
+
+      <div class="desc">紗世のクラスメイトで友達。<br>雰囲気だけクールだがめちゃくちゃバカで天然。<br>
+        そしてワードチョイスがちょっと独特。<br>どこか憎めないやつ。<br><br>年齢：１６歳<br>性別：女の子<br>血液型：A</div>
+    </div>
+
+    <div class="serif">「拙者の机で<br>何をしているのだ」</div>
+  </div>
+
+  <div class="character-page">
+    <img src="rumomo.jpg">
+
+    <div class="info">
+      <div class="name">
+        <ruby>
+          花咲　るもも
+          <rt>Hanasaki Rumomo</rt>
+        </ruby>
+      </div>
+
+      <div class="desc">ぶりっこで愛嬌があるが、本当はめっちゃヤバイ人。<br>世界征服を企んでおり、暴走させてはいけない存在。<br>
+        笑顔で毒舌を吐く。
+        <br><br>年齢：１６歳<br>性別：女の子<br>血液型：B</div>
+    </div>
+
+    <div class="serif">「紗世ちゃんが最高の屈辱を<br>味わっているところを、<br>　　　私、嘲笑ってみたいんです！」</div>
+  </div>
+
+<a href="fanart.html" class="button">オリキャラファンアートについて</a>
+</div>
+
+<audio id="bgm" src="chiisanaomochabako.mp3" loop></audio>
+<audio id="clickSE" src="cat.mp3" preload="auto"></audio>
+
+<img id="rodoCursor" src="neko.jpg">
+<script src="common.js"></script>
+
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+  const pages = document.querySelectorAll(".character-page");
+
+  pages.forEach((p, i) => {
+    setTimeout(() => {
+      p.classList.add("show");
+    }, i * 200);
+  });
+});
+
+const serifs = document.querySelectorAll(".serif");
+
+window.addEventListener("scroll", () => {
+  serifs.forEach(s => {
+    const rect = s.getBoundingClientRect();
+
+    if (rect.top < window.innerHeight - 100) {
+      s.classList.add("show");
+    }
+  });
+});
+</script>
+
+</body>
+</html>

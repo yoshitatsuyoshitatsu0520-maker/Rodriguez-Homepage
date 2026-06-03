@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>伊藤ロドリゲスホームページ</title>
+
+<style>
+body {
+  background: linear-gradient(45deg, #e6a9c0, #dcdcdc, #a8b8d8);
+  background-size: 200% 200%;
+  animation: fadeIn 1s forwards, bgMove 3s infinite alternate;
+
+  font-family: "Comic Sans MS", cursive;
+  text-align: center;
+  margin: 0;
+}
+
+/* フェードイン */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* フェードアウト */
+body.fadeOut {
+  opacity: 0;
+  transition: 0.5s;
+}
+
+/* 背景 */
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* タイトル */
+h1 {
+  font-size: 40px;
+  color: white;
+  text-shadow:
+    0 0 5px pink,
+    0 0 10px hotpink,
+    0 0 20px hotpink;
+  cursor: pointer;
+}
+
+h1:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
+/* ボタン */
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 15px auto;
+  width: 300px;
+  height: 60px;
+
+  background: white;
+  color: black;
+  border-radius: 20px;
+  text-decoration: none;
+  box-shadow: 0 0 10px pink;
+  transition: 0.3s;
+  font-size: 16px;
+}
+
+.button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px hotpink;
+}
+
+.button:active {
+  transform: scale(0.95);
+}
+
+button.button {
+  border: none;
+}
+
+/* カーソル */
+#rodoCursor {
+  position: fixed;
+  width: 60px;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* 隠しゲームボタン */
+#secretGameBtn {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  width: 80px;
+  opacity: 0.7;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#secretGameBtn:hover {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* 隠し入力 */
+#secretBox {
+  display:none;
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  background:black;
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 0 20px red;
+  z-index:9999;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 音 -->
+<audio id="bgm" src="chiisanaomochabako.mp3"></audio>
+<audio id="clickSE" src="cat.mp3" preload="auto"></audio>
+
+<h1 onclick="secret()">伊藤ロドリゲスホームページ</h1>
+
+<a href="about.html" class="button">テキトーに自己紹介</a>
+<a href="sns.html" class="button">SNSリンクまとめ</a>
+<a href="chara.html" class="button">オリジナルキャラクター紹介</a>
+<a href="fanart.html" class="button">オリキャラファンアートについて</a>
+<a href="game.html" class="button">自作ゲーム一覧</a>
+<a href="request.html" class="button">有償依頼について</a>
+<a href="#" class="button" onclick="uranai(); return false;">本日のロド占い</a>
+<a href="mystery.html" class="button">おまけ</a>
+
+<button class="button" onclick="collapse()">絶対に押すな</button>
+
+<img src="neko2.jpg" id="secretGameBtn">
+
+<!-- 隠し入力欄 -->
+<div id="secretBox">
+  <p style="color:white;">合言葉は？</p>
+  <input id="secretInput" style="padding:10px; font-size:16px; border:none; border-radius:10px;">
+  <button onclick="checkSecret()" style="margin-left:10px; padding:10px 15px; border:none; border-radius:10px;">OK</button>
+</div>
+
+<img id="rodoCursor" src="neko.jpg">
+
+<script>
+// 🎮 隠しゲーム
+document.getElementById("secretGameBtn").addEventListener("click", () => {
+  location.href = "nazogame.html";
+});
+
+// ⏳ 放置検知
+let idleTimer;
+
+function resetTimer() {
+  clearTimeout(idleTimer);
+  idleTimer = setTimeout(showSecret, 20000);
+}
+
+["click","mousemove","keydown","touchstart"].forEach(e=>{
+  document.addEventListener(e, resetTimer);
+});
+
+resetTimer();
+
+// 👁️ 表示
+function showSecret() {
+  const box = document.getElementById("secretBox");
+
+  document.body.style.filter = "invert(1)";
+  setTimeout(() => {
+    document.body.style.filter = "none";
+    box.style.display = "block";
+  }, 200);
+}
+
+// 🔐 判定
+function checkSecret() {
+  const input = document.getElementById("secretInput");
+  const box = document.getElementById("secretBox");
+
+  if (input.value === "rodo") {
+
+    document.body.innerHTML = `<h1 style="font-size:50px;">正解！</h1>`;
+
+    setTimeout(() => {
+      location.href = "https://youtu.be/JRTt19uTiVQ?si=IxKUaH9A0I0AV2tm";
+    }, 1500);
+
+  } else {
+    alert("違いますｶｷ");
+    box.style.display = "none";
+    input.value = "";
+    resetTimer();
+  }
+}
+</script>
+
+<script src="common.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>テキトーに自己紹介</title>
+
+<style>
+body {
+  background: linear-gradient(45deg, #e6a9c0, #dcdcdc, #a8b8d8);
+  background-size: 200% 200%;
+  animation: bgMove 3s infinite alternate;
+
+  font-family: "Comic Sans MS", cursive;
+  text-align: center;
+  margin: 0;
+
+  transition: opacity 0.5s;
+}
+
+/* 背景 */
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* タイトル */
+h1 {
+  color: white;
+  text-shadow: 0 0 10px hotpink;
+  margin-top: 30px;
+}
+
+/* 本文カード */
+.box {
+  background: white;
+  margin: 20px auto;
+  padding: 25px;
+
+  width: 90%;
+  max-width: 450px;
+
+  border-radius: 20px;
+  box-shadow: 0 0 10px pink;
+
+  white-space: pre-line;
+  line-height: 1.8;
+}
+
+/* ボタン */
+.button {
+  display: block;
+  margin: 15px auto;
+  width: 320px;
+  height: 60px;
+  line-height: 60px;
+
+  background: white;
+  color: black;
+  border-radius: 20px;
+  text-decoration: none;
+
+  box-shadow: 0 0 10px pink;
+  transition: 0.3s;
+}
+
+.button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px hotpink;
+}
+
+/* 戻るボタン */
+.back {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+
+  width: 180px;
+  height: 45px;
+  line-height: 45px;
+
+  font-size: 14px;
+
+  background: white;
+  border-radius: 15px;
+
+  box-shadow: 0 0 10px pink;
+  z-index: 999;
+}
+
+.back:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px hotpink;
+}
+
+/* フェード（←修正） */
+.fadeOut {
+  opacity: 0;
+}
+
+/* プロフィール画像 */
+.profile {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px pink;
+  margin: 30px auto 10px;
+  display: block;
+}
+
+/* カーソル */
+#rodoCursor {
+  position: fixed;
+  width: 60px;
+  pointer-events: none;
+  z-index: 9999;
+}
+</style>
+</head>
+
+<body>
+
+<img src="neko2.jpg" class="profile">
+
+<!-- BGM -->
+<audio id="bgm" src="chiisanaomochabako.mp3" loop></audio>
+<audio id="clickSE" src="cat.mp3" preload="auto"></audio>
+
+<h1>テキトーに自己紹介</h1>
+
+<div class="box">みなさんこんにちは、伊藤ロドリゲスです🙇🙇🙇
+ロドって呼んでねっ♪
+
+お絵描きをしたり、動画やゲームを作ったりしてます🫶
+
+好きなものは人外とアニメとセイキンさんとヒカキンさんで、
+好きなアニメは
+「ねこのティーチくん」「おそ松さん」「約束のネバーランド」
+「ガヴリールドロップアウト」「クレヨンしんちゃん」「あたしンち」
+他にもめっちゃいっぱいあります🙌
+
+自己アピールすると、
+Xではイラストで最大8万バズ、
+YouTubeでは最大約20万再生を取ってます💪
+
+取得検定もいっぱいあります📚
+
+あと自分の顔にめっちゃ自信あります！
+
+ガチコミュ障の陰キャだけど、いーっぱい仲良くしてほしいな♪
+</div>
+
+<a href="index.html" class="button back">← トップへ戻る</a>
+
+<img id="rodoCursor" src="neko.jpg">
+<script src="common.js"></script>
+
+</body>
+</html>

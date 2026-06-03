@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>>縺上＝?励○??ｽ抵ｽ?ｽ費ｽ?ｽ吶?縺倥％?鯉ｽ?</title>
+
+<style>
+body {
+  background: black;
+  color: red;
+  text-align: center;
+  font-family: serif;
+  margin: 0;
+  overflow: hidden;
+}
+
+/* ノイズ */
+body::before {
+  content: "";
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255,255,255,0.02) 0px,
+    rgba(255,255,255,0.02) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  pointer-events: none;
+}
+
+/* 点滅 */
+@keyframes flicker {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+h1 {
+  margin-top: 100px;
+  animation: flicker 0.2s infinite;
+}
+</style>
+</head>
+
+<body>
+
+<h1 id="main">押したな</h1>
+
+<script>
+
+// ① 少し違和感
+setTimeout(() => {
+  document.getElementById("main").innerText = "許さない";
+}, 2000);
+
+// ② 名前取得（ここが強い）
+let userName = "";
+setTimeout(() => {
+  userName = prompt("ねえ、名前教えて");
+}, 4000);
+
+// ③ 空気変化
+setTimeout(() => {
+  document.body.style.background = "#050505";
+}, 6000);
+
+// ④ 名前表示（ゾワる）
+setTimeout(() => {
+  document.body.innerHTML = `<h1>${userName}、次はお前だ</h1>`;
+}, 9000);
+
+// ⑤ 音（途中で止まる）
+let audio = new Audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3");
+setTimeout(() => {
+  audio.volume = 0.2;
+  audio.play();
+}, 9000);
+
+setTimeout(() => {
+  audio.pause();
+}, 12000);
+
+// ⑥ 画面崩壊
+setTimeout(() => {
+  setInterval(() => {
+    document.body.style.transform =
+      `translate(${Math.random()*20-10}px, ${Math.random()*20-10}px)`;
+  }, 50);
+}, 12000);
+
+// ⑦ 最終演出（ここが神）
+setTimeout(() => {
+
+  document.body.innerHTML = `
+    <h1 style="font-size:60px;">縺｡繧薙％縺阪ｓ縺溘∪</h1>
+  `;
+
+  let toggle = false;
+
+  setInterval(() => {
+    document.body.style.background = toggle ? "black" : "red";
+    document.body.style.color = toggle ? "red" : "black";
+    toggle = !toggle;
+  }, 120);
+
+}, 15000);
+
+</script>
+
+</body>
+</html>

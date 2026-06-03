@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>?</title>
+
+<style>
+body {
+  margin: 0;
+  background: black;
+  overflow: hidden;
+}
+
+/* 動画を完全フルスクリーン */
+video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 謎動画 -->
+<video id="mysteryVideo" autoplay muted playsinline>
+  <source src="nazo.mp4" type="video/mp4">
+</video>
+
+<script>
+const video = document.getElementById("mysteryVideo");
+
+/* 終わったらトップへ戻る */
+video.addEventListener("ended", () => {
+  window.location.href = "index.html";
+});
+
+/* クリックでも戻れる（保険） */
+document.addEventListener("click", () => {
+  window.location.href = "index.html";
+});
+</script>
+
+</body>
+</html>
