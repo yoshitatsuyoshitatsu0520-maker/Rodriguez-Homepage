@@ -156,7 +156,7 @@ document.addEventListener("click", () => {
     }, 2000);
   }
 
-  if (clickCount >= 3) {
+  if (clickCount >= 5) {
     clickCount = 0;
     clickTimer = null;
 
@@ -171,3 +171,33 @@ function secret() {
 
   location.href = "ta.html";
 }
+
+function createHeart(){
+
+    const heart = document.createElement("div");
+
+    heart.className = "heart";
+
+    const hearts = ["♡","♥"];
+
+    heart.textContent =
+        hearts[Math.floor(Math.random()*hearts.length)];
+
+    heart.style.left =
+        Math.random()*100 + "vw";
+
+    heart.style.fontSize =
+        (20 + Math.random()*20) + "px";
+
+    heart.style.animationDuration =
+        (6 + Math.random()*4) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },10000);
+
+}
+
+setInterval(createHeart,1200);

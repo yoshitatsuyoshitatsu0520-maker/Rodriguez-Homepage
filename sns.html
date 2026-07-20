@@ -58,12 +58,31 @@ h1 {
   color: white;
   transition: 0.3s;
 }
-
+.sns-button{
+    box-shadow:
+        0 8px 18px rgba(0,0,0,0.25),
+        inset 0 1px 0 rgba(255,255,255,0.3);
+}
 .x { background: black; }
 .pixiv { background: #0096fa; }
 .youtube { background: red; }
-.marshmallow { background: #ff4fa3; }
+.marshmallow { background: #F3969A; }
 
+.x:hover{
+    box-shadow:0 0 25px white;
+}
+
+.pixiv:hover{
+    box-shadow:0 0 25px #42b5ff;
+}
+
+.youtube:hover{
+    box-shadow:0 0 25px #ff5b5b;
+}
+
+.marshmallow:hover{
+    box-shadow:0 0 25px #ffb7c8;
+}
 .sns-button:hover {
   transform: scale(1.1);
   box-shadow: 0 0 20px white;
@@ -92,6 +111,33 @@ h1 {
   width: 60px;
   pointer-events: none;
   z-index: 9999;
+}
+.heart {
+  position: fixed;
+  bottom: -50px;
+  font-size: 24px;
+  pointer-events: none;
+  animation: floatHeart linear forwards;
+  z-index: -1;   /* 背景に表示 */
+  opacity: 0.7;
+
+  color: white;
+}
+
+@keyframes floatHeart {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translateY(-120vh) translateX(30px) scale(1.4);
+    opacity: 0;
+  }
 }
 </style>
 </head>

@@ -9,20 +9,23 @@
 body {
   background: linear-gradient(45deg, #e6a9c0, #dcdcdc, #a8b8d8);
   background-size: 200% 200%;
-  animation: bgMove 3s ease-in-out infinite alternate;
-
+  animation: fadeIn 1s forwards, bgMove 3s infinite alternate;
   font-family: "Comic Sans MS", cursive;
   margin: 0;
   text-align: center;
   min-height: 100vh;
+  background-attachment: fixed;
 }
-
+/* フェードイン */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 /* 背景アニメ */
 @keyframes bgMove {
   0% { background-position: 0% 50%; }
   100% { background-position: 100% 50%; }
 }
-
 /* ===== タイトル ===== */
 h1 {
   color: white;
@@ -117,7 +120,11 @@ h1 {
   margin: 0;
 
   background: linear-gradient(45deg, #ff69b4, #6ecbff);
+
+  background-clip: text;
   -webkit-background-clip: text;
+
+  color: transparent;
   -webkit-text-fill-color: transparent;
 }
 
@@ -201,6 +208,34 @@ rt {
 .button:hover {
   transform: scale(1.1);
   box-shadow: 0 0 20px hotpink;
+}
+
+.heart {
+  position: fixed;
+  bottom: -50px;
+  font-size: 24px;
+  pointer-events: none;
+  animation: floatHeart linear forwards;
+  z-index: -1;   /* 背景に表示 */
+  opacity: 0.7;
+
+  color: white;
+}
+
+@keyframes floatHeart {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translateY(-120vh) translateX(30px) scale(1.4);
+    opacity: 0;
+  }
 }
 </style>
 </head>

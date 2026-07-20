@@ -118,6 +118,117 @@ button.button {
   box-shadow:0 0 20px red;
   z-index:9999;
 }
+
+@keyframes float {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+h1{
+    animation: float 3s ease-in-out infinite;
+}
+
+.heart {
+  position: fixed;
+  bottom: -50px;
+  font-size: 24px;
+  pointer-events: none;
+  animation: floatHeart linear forwards;
+  z-index: -1;   /* 背景に表示 */
+  opacity: 0.7;
+  color: white;
+}
+
+@keyframes floatHeart {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translateY(-120vh) translateX(30px) scale(1.4);
+    opacity: 0;
+  }
+}
+#roroaRun{
+
+    position:fixed;
+
+    left:100vw;
+
+    top:100px;
+
+    width:180px;
+
+    display:none;
+
+    cursor:pointer;
+
+    z-index:9998;
+
+    opacity:0;
+
+    transition:
+        opacity .5s,
+        transform .5s;
+
+}
+#roroaBubble{
+
+    position:fixed;
+
+    display:none;
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:12px 18px;
+
+
+    font-weight:bold;
+
+    z-index:9999;
+
+    max-width:220px;
+
+opacity: 0;
+    transform: scale(0.8);
+
+    transition:
+        opacity .5s,
+        transform .5s;
+}
+
+/* しっぽ */
+#roroaBubble::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:40px;
+
+    bottom:-13px;   /* ←ここを大きくすると下に下がる */
+
+    width:0;
+
+    height:0;
+
+    border-left:12px solid transparent;
+
+    border-right:12px solid transparent;
+
+    border-top:14px solid white;
+
+    z-index: 0;
+
+}
 </style>
 </head>
 
@@ -150,7 +261,9 @@ button.button {
 </div>
 
 <img id="rodoCursor" src="neko.jpg">
+<img id="roroaRun" src="roroa.png">
 
+<div id="roroaBubble"></div>
 <script>
 // 🎮 隠しゲーム
 document.getElementById("secretGameBtn").addEventListener("click", () => {
@@ -202,6 +315,149 @@ function checkSecret() {
     resetTimer();
   }
 }
+window.addEventListener("load",()=>{
+
+const roroa =
+document.getElementById("roroaRun");
+
+const bubble =
+document.getElementById("roroaBubble");
+
+const lines=[
+
+"見つかったにゃん！💕",
+
+"くすぐったいにゃ～！",
+
+"にゃははっ♪"
+
+];
+
+let roroaTimer;
+
+function runRoroa(){
+
+  roroa.style.opacity = "0";
+bubble.style.opacity = "0";
+
+
+    if(roroa.style.display === "block") return;
+
+    roroa.style.display = "block";
+
+    requestAnimationFrame(()=>{
+    roroa.style.opacity = "1";
+});
+
+    const y =
+        Math.random()*(window.innerHeight-220);
+
+    roroa.style.top = y+"px";
+
+    roroa.style.left = "100vw";
+
+    roroa.animate(
+    [
+        { left: "100vw" },
+        { left: "-300px" }
+    ],
+    {
+        duration:5000,
+        easing:"linear",
+        fill:"forwards"
+    });
+
+    clearTimeout(roroaTimer);
+
+    roroaTimer = setTimeout(()=>{
+        roroa.style.display="none";
+        bubble.style.display="none";
+        roroa.src="roroa.png";
+    },5000);
+
+}
+
+setInterval(()=>{
+
+    // ←あとで好きな確率にしてOK！
+    if(Math.random()<1){
+
+        runRoroa();
+
+    }
+
+},30000);
+
+roroa.onclick=()=>{
+
+    clearTimeout(roroaTimer);
+
+    // 走るアニメ停止
+    // 今の位置を取得
+// 現在位置を取得
+const rect = roroa.getBoundingClientRect();
+
+// アニメーション停止
+roroa.getAnimations().forEach(a => a.cancel());
+
+// 停止した位置で固定
+roroa.style.left = rect.left + "px";
+roroa.style.top = rect.top + "px";
+    // 表情変更
+    roroa.src="roroa2.png";
+
+    // セリフ
+    bubble.innerText =
+        lines[Math.floor(Math.random()*lines.length)];
+
+        
+
+
+    let x = rect.left - 40;
+
+    if(x < 10){
+        x = 10;
+    }
+
+    bubble.style.left = x + "px";
+    bubble.style.top = (rect.top - 70) + "px";
+
+    bubble.style.display = "block";
+    bubble.style.opacity = "0";
+    bubble.style.transform = "scale(0.8)";
+
+    requestAnimationFrame(()=>{
+    bubble.style.opacity = "1";
+    bubble.style.transform = "scale(1)";
+});
+
+   setTimeout(()=>{
+
+    // フェードアウト
+    bubble.style.opacity = "0";
+    bubble.style.transform = "scale(0.8)";
+    roroa.style.opacity = "0";
+
+    setTimeout(()=>{
+
+        bubble.style.display = "none";
+        roroa.style.display = "none";
+
+        bubble.style.opacity = "0";
+        bubble.style.transform = "scale(0.8)";
+
+        roroa.style.opacity = "0";
+        roroa.style.transform = "scale(1)";
+
+        roroa.src = "roroa.png";
+
+    },500);
+
+},3000);
+
+};
+
+}); 
 </script>
 
 <script src="common.js"></script>
